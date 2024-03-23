@@ -113,7 +113,7 @@ class London {
 
   static RandomSongName() {
     return [0, 1]
-      .map(() => London.GenerateRandomWord())
+      .map((t) => London.GenerateRandomWord(t))
       .map((n) => n[0].toUpperCase() + n.substring(1))
       .join(" ");
   }
