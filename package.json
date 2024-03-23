@@ -1,7 +1,7 @@
 {
   "name": "zemiton-midi",
-  "version": "1.0.2",
-  "description": "A library to generate music in midi format",
+  "version": "1.0.3",
+  "description": "A library to generate music in midi format.",
   "main": "index.js",
   "type": "module",
   "scripts": {

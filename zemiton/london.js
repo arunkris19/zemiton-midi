@@ -1,7 +1,7 @@
 import Utils from "./utils.js";
 
 class London {
-  static GenerateRandomWord(l) {
+  static GenerateRandomWord(type) {
     // Array of adjectives
     const adjectives = [
       "whispering",
@@ -106,13 +106,13 @@ class London {
       "mist",
       "whirlwind",
     ];
-    return Utils.RandomInt(2) === 0
+    return (type ?? Utils.RandomInt(2)) === 0
       ? adjectives[Utils.RandomInt(adjectives.length)]
       : nouns[Utils.RandomInt(nouns.length)];
   }
 
   static RandomSongName() {
-    return [1, 2]
+    return [0, 1]
       .map(() => London.GenerateRandomWord())
       .map((n) => n[0].toUpperCase() + n.substring(1))
       .join(" ");
@@ -122,7 +122,7 @@ class London {
     const lyrics = [];
     let length = 0;
     do {
-      const word = London.GenerateRandomWord(Utils.RandomInt(10, 2));
+      const word = London.GenerateRandomWord();
       lyrics.push(word);
       length += word.length;
     } while (length < 200);

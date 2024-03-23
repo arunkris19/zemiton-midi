@@ -30,11 +30,11 @@ class Scale {
   }
 
   static Major(note) {
-    return [Scale.Ionian(note), note+' Major'];
+    return [Scale.Ionian(note)[0], note+' Major'];
   }
 
   static Minor(note) {
-    return [Scale.Aeolian(note), note+' Minor'];
+    return [Scale.Aeolian(note)[0], note+' Minor'];
   }
   static Ionian(note) {
     return [Scale.getScaleByCount(note, "1221222".split("")), note+' Ionian'];
@@ -52,11 +52,9 @@ class Scale {
     return [Scale.getScaleByCount(note, "1221221".split("")), note+' Mixolydian'];
   }
   static Aeolian(note) {
-    console.log('Scale          : '+note+' Aeolian');
     return [Scale.getScaleByCount(note, "1212212".split("")), note+' Aeolian'];
   }
   static Locrian(note) {
-    console.log('Scale          : '+note+' Locrian');
     return [Scale.getScaleByCount(note, "1122122".split("")), note+' Locrian'];
   }
 

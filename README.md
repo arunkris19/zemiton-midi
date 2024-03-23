@@ -26,8 +26,9 @@ $ npm install
 ### Input
 
 ```js
-import { cwd } from 'process';
-import ZemitonMidi from 'zemiton-midi';
+
+import { cwd } from "process";
+import ZemitonMidi from "zemiton-midi";
 
 const fileFolder = cwd() + "/midi/";
 /*
@@ -36,7 +37,12 @@ Supports 3 methods
  - ZemitonMidi.Method.Lorem
  - ZemitonMidi.Method.Geany
 */
-const Zc = new ZemitonMidi.MidiComposer().Compose(ZemitonMidi.Method.London);
+const Zc = new ZemitonMidi.MidiComposer().Compose(
+  ZemitonMidi.Method.London,
+  110,
+  ZemitonMidi.Scale.Minor("F"),
+  "Zemiton Sonata"
+);
 
 Zc.WriteFile(fileFolder); //Filename will be auto generated
 

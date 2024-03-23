@@ -50,19 +50,18 @@ class ZemitonMidi {
     return motif;
   }
 
-  Compose(Method=London) {
+  Compose(Method=London, tempo=Utils.RandomInt(140, 80), inputScale=null, inputSongName=null) {
     /**
      * Midi configuration
      * scale, signature, tempo, etc.
      */
     const scaleNote = Scale.noteMap[Utils.RandomInt(Scale.noteMap.length)];
-    const [scale, scaleName] = Scale.Random(scaleNote);
+    const [scale, scaleName] = inputScale ?? Scale.Random(scaleNote);
     const lyrics = Method.RandomLyrics();
-    const tempo = Utils.RandomInt(140, 80);
 
     this.scaleName = scaleName;
     this.songName = (
-      Method.RandomSongName() +
+      (inputSongName ?? Method.RandomSongName()) +
       "_[" +
       this.scaleName +
       "]"
