@@ -40,6 +40,7 @@ const Zc = new ZemitonMidi.MidiComposer().Compose(ZemitonMidi.Method.London);
 
 Zc.WriteFile(fileFolder); //Filename will be auto generated
 
+```
 ## References
 
   * https://www.npmjs.com/package/midi-writer-js
