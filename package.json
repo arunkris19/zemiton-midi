@@ -1,0 +1,28 @@
+{
+  "name": "zemiton-midi",
+  "version": "1.0.0",
+  "description": "A library to generate music in midi format",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arunkris19/zemiton-midi.git"
+  },
+  "keywords": [
+    "zemiton",
+    "midi",
+    "music"
+  ],
+  "author": "zemiton composer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arunkris19/zemiton-midi/issues"
+  },
+  "homepage": "https://github.com/arunkris19/zemiton-midi#readme",
+  "dependencies": {
+    "midi-writer-js": "^3.1.1"
+  }
+}
