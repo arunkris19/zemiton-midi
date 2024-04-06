@@ -38,6 +38,7 @@ class Track {
   static DurationCount(duration){
     switch(duration){
       case 'd2': return 3;
+      case 1: return 4;
       default: return 4 / duration;
     }
   }

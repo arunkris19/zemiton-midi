@@ -1,7 +1,7 @@
 import Utils from "./utils.js";
 
 class Lorem {
-  static RandomLyrics() {
+  static GenerateRandomWord() {
     const Lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fringilla phasellus faucibus scelerisque eleifend. In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Libero justo laoreet sit amet cursus sit amet. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Imperdiet nulla malesuada pellentesque elit eget. Pellentesque habitant morbi tristique senectus et netus. Semper risus in hendrerit gravida. Nibh venenatis cras sed felis eget velit. Lobortis feugiat vivamus at augue eget arcu dictum. Suscipit adipiscing bibendum est ultricies integer quis auctor elit.Ornare quam viverra orci sagittis. Justo laoreet sit amet cursus sit. In fermentum et sollicitudin ac orci phasellus. Integer vitae justo eget magna. Aliquet nec ullamcorper sit amet. Id eu nisl nunc mi. Leo a diam sollicitudin tempor id eu nisl nunc mi. At tellus at urna condimentum mattis pellentesque id. Nunc lobortis mattis aliquam faucibus purus. Purus semper eget duis at tellus. At tellus at urna condimentum mattis. Enim tortor at auctor urna nunc id cursus metus aliquam. Sit amet aliquam id diam maecenas. Dolor sed viverra ipsum nunc aliquet bibendum. Euismod lacinia at quis risus sed vulputate odio ut.Sapien et ligula ullamcorper malesuada proin. Orci nulla pellentesque dignissim enim sit amet venenatis urna cursus. Molestie nunc non blandit massa enim nec dui nunc. Dolor sit amet consectetur adipiscing elit. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus. Molestie a iaculis at erat pellentesque adipiscing commodo. Odio euismod lacinia at quis risus sed. Quis viverra nibh cras pulvinar mattis nunc. Amet tellus cras adipiscing enim eu turpis. Etiam sit amet nisl purus in mollis nunc. Pulvinar neque laoreet suspendisse interdum consectetur. Neque volutpat ac tincidunt vitae. Laoreet suspendisse interdum consectetur libero id faucibus.
     Pharetra et ultrices neque ornare aenean. Sit amet mattis vulputate enim nulla aliquet porttitor lacus luctus. Nibh venenatis cras sed felis eget velit aliquet sagittis. Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Sapien faucibus et molestie ac feugiat sed. Libero nunc consequat interdum varius. Duis at consectetur lorem donec massa sapien faucibus et molestie. Aliquet nec ullamcorper sit amet risus nullam. Sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Maecenas pharetra convallis posuere morbi leo urna. Dictum sit amet justo donec enim diam vulputate. Enim sit amet venenatis urna. Morbi tristique senectus et netus et malesuada fames ac turpis. Venenatis tellus in metus vulputate. Interdum velit euismod in pellentesque massa. Faucibus scelerisque eleifend donec pretium vulputate sapien. Non curabitur gravida arcu ac tortor dignissim convallis aenean. In mollis nunc sed id semper risus in hendrerit gravida. Gravida arcu ac tortor dignissim.Elit at imperdiet dui accumsan. Ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Viverra tellus in hac habitasse. Pellentesque habitant morbi tristique senectus et netus et. Ut lectus arcu bibendum at varius vel pharetra. Tortor pretium viverra suspendisse potenti nullam ac tortor vitae purus. Nulla porttitor massa id neque. Neque aliquam vestibulum morbi blandit cursus. Posuere ac ut consequat semper. Purus semper eget duis at tellus at. Mattis pellentesque id nibh tortor id aliquet lectus.
     Blandit libero volutpat sed cras ornare arcu. Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Tincidunt vitae semper quis lectus nulla at volutpat diam. Fermentum dui faucibus in ornare quam viverra. A condimentum vitae sapien pellentesque habitant morbi. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. Ridiculus mus mauris vitae ultricies leo integer malesuada. Mattis rhoncus urna neque viverra justo. Enim diam vulputate ut pharetra sit amet aliquam id diam. Amet nisl purus in mollis nunc sed id. Et netus et malesuada fames ac turpis egestas.Pretium fusce id velit ut tortor pretium viverra. Enim ut sem viverra aliquet eget. Interdum velit laoreet id donec. Sagittis id consectetur purus ut. Quis ipsum suspendisse ultrices gravida. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Sapien et ligula ullamcorper malesuada. In fermentum posuere urna nec tincidunt praesent semper. Vitae justo eget magna fermentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Eu tincidunt tortor aliquam nulla.Et ligula ullamcorper malesuada proin libero nunc consequat interdum varius. In pellentesque massa placerat duis ultricies. Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Integer malesuada nunc vel risus. Est lorem ipsum dolor sit amet consectetur. Dignissim enim sit amet venenatis urna cursus eget. Nec feugiat nisl pretium fusce id velit ut tortor. Suspendisse potenti nullam ac tortor vitae. Viverra tellus in hac habitasse. Habitasse platea dictumst quisque sagittis.
@@ -13,13 +13,42 @@ class Lorem {
     Pellentesque massa placerat duis ultricies. Aliquet lectus proin nibh nisl condimentum. In iaculis nunc sed augue lacus viverra vitae. Nam at lectus urna duis convallis convallis tellus id interdum. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Habitant morbi tristique senectus et netus et. Adipiscing bibendum est ultricies integer. Amet risus nullam eget felis. Ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis. Ullamcorper morbi tincidunt ornare massa eget egestas.Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Eget egestas purus viverra accumsan in nisl nisi. Quam viverra orci sagittis eu volutpat odio facilisis. Lacus viverra vitae congue eu. Tempor orci eu lobortis elementum nibh tellus molestie nunc non. Nec feugiat nisl pretium fusce id velit ut. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum a. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Urna et pharetra pharetra massa. Ultrices sagittis orci a scelerisque purus.Vivamus at augue eget arcu. Est sit amet facilisis magna etiam tempor orci. Rutrum quisque non tellus orci ac auctor. Et ligula ullamcorper malesuada proin libero nunc consequat interdum. Proin nibh nisl condimentum id venenatis a condimentum vitae sapien. Arcu non odio euismod lacinia at quis risus sed. Eget lorem dolor sed viverra. Tempus imperdiet nulla malesuada pellentesque elit. Mi ipsum faucibus vitae aliquet nec. Proin sed libero enim sed faucibus turpis in eu mi. Sagittis aliquam malesuada bibendum arcu. Tempor orci eu lobortis elementum nibh tellus molestie nunc. Pulvinar mattis nunc sed blandit libero.
     Velit egestas dui id ornare arcu odio. Eget duis at tellus at urna condimentum mattis. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Eget est lorem ipsum dolor sit amet. Proin libero nunc consequat interdum varius sit amet mattis. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Urna molestie at elementum eu facilisis. Amet facilisis magna etiam tempor orci eu. Id diam vel quam elementum pulvinar etiam non. Nisi quis eleifend quam adipiscing vitae proin. Enim ut sem viverra aliquet eget. Platea dictumst vestibulum rhoncus est. Bibendum at varius vel pharetra vel turpis nunc. Donec pretium vulputate sapien nec. Massa massa ultricies mi quis.Accumsan sit amet nulla facilisi morbi tempus iaculis. At varius vel pharetra vel turpis nunc eget. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Duis at tellus at urna condimentum mattis pellentesque id nibh. A pellentesque sit amet porttitor eget dolor morbi non. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Massa sed elementum tempus egestas sed sed. Sed viverra tellus in hac. Bibendum enim facilisis gravida neque convallis a cras semper. Amet justo donec enim diam vulputate ut pharetra sit amet. Quis commodo odio aenean sed adipiscing diam. Neque viverra justo nec ultrices dui sapien eget mi. Aliquet nec ullamcorper sit amet risus nullam eget felis eget.`;
 
-    const start = Utils.RandomInt(Lorem.length - 200);
     return Lorem.replace(/\n/g,'')
-    .substring(start, start + 200)
     .toLowerCase()
     .replace(/\.,/g, "")
     .split(" ")
-    .sort(Utils.RandomSort);
+    .sort(Utils.RandomSort)[Utils.RandomInt(500)];
+  }
+
+  static RandomLyrics() {
+    const randomize = (f,i) => i === Utils.RandomInt(3) ? f.split('').reverse().join('') : f;
+    // parts
+    const verse = new Array(4).fill(null).map(() => Lorem.GenerateRandomWord());
+    const verse2 = verse.map(randomize);
+    const chorus = new Array(4).fill(null).map(() => Lorem.GenerateRandomWord());
+    const chorus2 = chorus.map(randomize);
+    const fall = new Array(4).fill(null).map(() => Lorem.GenerateRandomWord());
+    const fall2 = fall.map(randomize);
+    const pause = ['|'];
+    
+    // song
+    return [
+      verse,
+      pause,
+      verse2,
+      pause,
+      verse,
+      pause,
+      chorus,
+      chorus2,
+      chorus,
+      pause,
+      fall,
+      pause,
+      fall2,
+      pause,
+      fall
+    ].flat(1);
   }
 
   static RandomSongName() {
