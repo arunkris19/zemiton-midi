@@ -224,33 +224,49 @@ class London {
   }
 
   static RandomLyrics() {
-    const randomize = (f,i) => i === Utils.RandomInt(3) ? f.split('').reverse().join('') : f;
     // parts
-    const verse = new Array(3).fill(null).map(() => London.GenerateRandomWord());
-    const verse2 = verse.map(randomize);
-    const chorus = new Array(3).fill(null).map(() => London.GenerateRandomWord());
-    const chorus2 = chorus.map(randomize);
-    const fall = new Array(3).fill(null).map(() => London.GenerateRandomWord());
-    const fall2 = fall.map(randomize);
-    const pause = ['|'];
-    
+    const pause = [Utils.PAUSE];
+    const [alpha, beta, gamma, delta, sign] = [
+      London.GenerateRandomWord(),
+      London.GenerateRandomWord(),
+      London.GenerateRandomWord(),
+      London.GenerateRandomWord(),
+      London.GenerateRandomWord().substring(0,3),
+    ];
+    const rise = [alpha, beta];
+    const verse = [beta, gamma];
+    const verse2 = Utils.randomize(verse);
+    const preChorus = [delta, gamma];
+    const chorus = [delta, sign];
+    const fall = [alpha, beta, alpha];
+    const fall2 = Utils.randomize(fall);
+
     // song
     return [
-      verse,
       pause,
+      rise,
+      verse,
       verse2,
       pause,
-      verse,
+      preChorus,
+      pause,
+      preChorus,
       pause,
       chorus,
-      chorus2,
       chorus,
+      chorus,
+      chorus,
+      pause,
+      verse,
+      verse2,
       pause,
       fall,
-      pause,
       fall2,
       pause,
-      fall,
+      rise,
+      pause,
+      pause,
+      pause,
       pause
     ].flat(1);
   }

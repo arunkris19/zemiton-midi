@@ -11,58 +11,81 @@ class ZemitonMidi {
   scaleName = null;
   log = [];
 
+  LargeDurations(size) {
+    const part = Math.floor(size / 2);
+    const parts = [part, size - part];
+
+    return parts
+      .map((p) => {
+        return this.DurationsBySize(p);
+      })
+      .flat(1);
+  }
+
   DurationsBySize(size) {
     switch (size) {
       case 1:
-        return [4];
+        return [8];
       case 2:
-        return [4, 8];
+        return [4, "d2"];
       case 3:
-        return [8, 8, 8];
+        return [8, 8, "d2"];
       case 4:
-        return [4, 4, 4, 4];
+        return [
+          [4, 8, 8, 2],
+          [4, 4, 8, "d4"],
+        ][Utils.RandomInt(2)];
       case 5:
         return [4, 8, 4, 8, 4];
       case 6:
         return [4, 8, 8, 4, 8, 8];
       case 7:
         return [8, 8, 4, 8, 8, 8, 8];
-      case 8:
-        return [4, 4, 8, 8, 2, 4, 4, 4];
-      case 9:
-        return [4, 8, 4, 8, 4, 4, 2, 8, 8];
       default:
-        return new Array(size).fill([4, 8][Utils.RandomInt(2)]);
+        return this.LargeDurations(size);
     }
   }
 
   CreateMotif(seed, scale) {
-    const PAUSE = "|";
+    const durations = this.DurationsBySize(seed.length);
     const motif = seed.split("").map((c, i) => {
-      if(c === PAUSE){
-        return {
-          duration: [1],
-          pitch: scale[Utils.RandomInt(5)]
-        }
+      if (c === Utils.PAUSE) {
+        return c;
       }
       return {
-        duration: [2, 4, 8][c.charCodeAt(0) % 3],
+        duration: durations[i],
         pitch: "aeiou".includes(c)
           ? scale[0]
           : scale[c.charCodeAt(0) % scale.length],
       };
     });
-    
-    let durationSum = motif.reduce((a,b) => a + Track.DurationCount(b.duration), 0);
-    while(durationSum % 4 !== 0){
-      motif.push({
-        duration: 8,
-        pitch: scale[Utils.RandomInt(scale.length)]
-      });
-      durationSum = motif.reduce((a,b) => a + Track.DurationCount(b.duration), 0);
-    };
 
-    return motif;
+    /** normalize bars */
+    const durationSum = motif.reduce(
+      (a, b) => a + Track.DurationCount(b.duration),
+      0
+    );
+
+    const durationGap = 4 - (durationSum % 4);
+
+    Track.GetDurationFill(durationGap)
+      .sort(Utils.RandomSort)
+      .forEach((duration) => {
+        motif.push({
+          duration,
+          pitch: scale[Utils.RandomInt(scale.length)],
+        });
+      });
+
+    if (motif.includes(Utils.PAUSE)) {
+      motif.push({
+        duration: [1],
+        pitch: scale[Utils.RandomInt(scale.length)],
+      });
+    }
+
+    /** return final motif */
+    return motif.filter((m) => m.duration);
   }
 
   CreateBassMotif(seed, scale) {
@@ -91,7 +114,7 @@ class ZemitonMidi {
      */
     const scaleNote = Scale.noteMap[Utils.RandomInt(Scale.noteMap.length)];
     const [scale, scaleName] = inputScale ?? Scale.Random(scaleNote);
-    const lyrics = Method.RandomLyrics(); 
+    const lyrics = Method.RandomLyrics();
 
     this.scaleName = scaleName;
     this.songName = (
@@ -136,12 +159,12 @@ class ZemitonMidi {
     );
 
     const bass = Track.CreateTrack("Bass", tempo);
-    const bassWord = "zemiton-midi"
+    const bassWord = lyrics
+      .find((l) => l.length >= 4)
       .split("")
-      .slice(0, [4, 5, 6][Utils.RandomInt(3)])
       .sort(Utils.RandomSort)
       .join("");
-    
+
     const bassMotif = this.CreateBassMotif(bassWord, scale).map((note) => {
       return {
         ...note,

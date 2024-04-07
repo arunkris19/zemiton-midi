@@ -1,7 +1,8 @@
+import Lorem from "./lorem.js";
 import Utils from "./utils.js";
 
 class Geany {
-  static GenerateRandomWord(length=Utils.RandomInt(10,3)) {
+  static GenerateRandomWord(length=Utils.RandomInt(15,3)) {
     const vowels = "aeiou";
     const consonants = "bcdfghjklmnpqrstvwxyz";
     let word = "";
@@ -23,40 +24,55 @@ class Geany {
   }
 
   static RandomSongName() {
-    return [Utils.RandomInt(8, 4), Utils.RandomInt(9, 4)]
-      .map((l) => Geany.GenerateRandomWord(l))
-      .map((n) => n[0].toUpperCase() + n.substring(1))
-      .join(" ");
+    return Lorem.RandomSongName();
   }
 
   static RandomLyrics() {
-    const randomize = (f,i) => i === Utils.RandomInt(3) ? f.split('').reverse().join('') : f;
     // parts
-    const verse = new Array(3).fill(null).map(() => Geany.GenerateRandomWord());
-    const verse2 = verse.map(randomize);
-    const chorus = new Array(3).fill(null).map(() => Geany.GenerateRandomWord());
-    const chorus2 = chorus.map(randomize);
-    const fall = new Array(3).fill(null).map(() => Geany.GenerateRandomWord());
-    const fall2 = fall.map(randomize);
-    const pause = ['|'];
-    
+    const pause = [Utils.PAUSE];
+    const [alpha, beta, gamma, delta, sign] = [
+      Geany.GenerateRandomWord(),
+      Geany.GenerateRandomWord(),
+      Geany.GenerateRandomWord(),
+      Geany.GenerateRandomWord(),
+      Geany.GenerateRandomWord().substring(0,3),
+    ];
+    const rise = [alpha, sign];
+    const verse = [delta, gamma];
+    const verse2 = Utils.randomize(verse);
+    const preChorus = [sign, gamma];
+    const chorus = [alpha, sign];
+    const fall = [alpha, beta, sign];
+    const fall2 = Utils.randomize(fall);
+
     // song
     return [
+      preChorus,
       verse,
+      rise,
+      fall,
       pause,
-      verse2,
+      preChorus,
       pause,
-      verse,
-      pause,
-      chorus,
-      chorus2,
-      chorus,
+      preChorus,
       pause,
       fall,
       pause,
+      fall,
       fall2,
+      verse2,
       pause,
-      fall
+      chorus,
+      chorus,
+      chorus,
+      chorus,
+      pause,
+      verse,
+      verse2,
+      pause,
+      pause,
+      pause,
+      pause
     ].flat(1);
   }
 }
