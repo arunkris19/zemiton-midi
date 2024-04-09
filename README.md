@@ -4,6 +4,10 @@
 
 A node.js library to generate random music in midi format.
 
+## Examples
+You will find songs composed by zemiton-midi here.
+* https://www.youtube.com/channel/UCI6qW4ZYL3oKfxlz_JJSAfQ
+
 ## Installation
 
 Installation command.
