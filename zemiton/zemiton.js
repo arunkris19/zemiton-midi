@@ -161,12 +161,7 @@ class ZemitonMidi {
     );
 
     
-    const bassMotif = this.CreateMotif(Geany.GenerateRandomWord(8), scale).map((note) => {
-      return {
-        ...note,
-        pitch: scaleType === Scale.UPPER ? Scale.DownOctave(note.pitch) : note.pitch,
-      };
-    });
+    const bassMotif = this.CreateMotif(Geany.GenerateRandomWord(8), scale);
 
     const bassEvents = bassMotif.reduce(
       (a, b) => a + Track.DurationCount(b.duration),
