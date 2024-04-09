@@ -2,6 +2,12 @@ import Utils from "./utils.js";
 
 class Scale {
   static noteMap = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  static LOWER = -1;
+  static UPPER = 1;
+  static notePosition(note){
+    if(Scale.noteMap.indexOf(note) < 6) return Scale.LOWER;
+    return Scale.UPPER;
+  }
   static getScaleByCount(note, count) {
     let start = Scale.noteMap.indexOf(note);
     let octave = 4;
@@ -30,32 +36,32 @@ class Scale {
   }
 
   static Major(note) {
-    return [Scale.Ionian(note)[0], note+' Major'];
+    return [Scale.Ionian(note)[0], note+' Major', Scale.notePosition(note)];
   }
 
   static Minor(note) {
-    return [Scale.Aeolian(note)[0], note+' Minor'];
+    return [Scale.Aeolian(note)[0], note+' Minor', Scale.notePosition(note)];
   }
   static Ionian(note) {
-    return [Scale.getScaleByCount(note, "1221222".split("")), note+' Ionian'];
+    return [Scale.getScaleByCount(note, "1221222".split("")), note+' Ionian', Scale.notePosition(note)];
   }
   static Dorian(note) {
-    return [Scale.getScaleByCount(note, "1212221".split("")), note+' Dorian'];
+    return [Scale.getScaleByCount(note, "1212221".split("")), note+' Dorian', Scale.notePosition(note)];
   }
   static Phrygian(note) {
-    return [Scale.getScaleByCount(note, "1122212".split("")), note+' Phrygian'];
+    return [Scale.getScaleByCount(note, "1122212".split("")), note+' Phrygian', Scale.notePosition(note)];
   }
   static Lydian(note) {
-    return [Scale.getScaleByCount(note, "1222122".split("")), note+' Lydian'];
+    return [Scale.getScaleByCount(note, "1222122".split("")), note+' Lydian', Scale.notePosition(note)];
   }
   static Mixolydian(note) {
-    return [Scale.getScaleByCount(note, "1221221".split("")), note+' Mixolydian'];
+    return [Scale.getScaleByCount(note, "1221221".split("")), note+' Mixolydian', Scale.notePosition(note)];
   }
   static Aeolian(note) {
-    return [Scale.getScaleByCount(note, "1212212".split("")), note+' Aeolian'];
+    return [Scale.getScaleByCount(note, "1212212".split("")), note+' Aeolian', Scale.notePosition(note)];
   }
   static Locrian(note) {
-    return [Scale.getScaleByCount(note, "1122122".split("")), note+' Locrian'];
+    return [Scale.getScaleByCount(note, "1122122".split("")), note+' Locrian', Scale.notePosition(note)];
   }
 
   static DownOctave(note) {

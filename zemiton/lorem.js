@@ -1,3 +1,5 @@
+import Geany from "./geany.js";
+import London from "./london.js";
 import Track from "./track.js";
 import Utils from "./utils.js";
 
@@ -14,18 +16,14 @@ class Lorem {
     Pellentesque massa placerat duis ultricies Aliquet lectus proin nibh nisl condimentum In iaculis nunc sed augue lacus viverra vitae Nam at lectus urna duis convallis convallis tellus id interdum Diam in arcu cursus euismod quis viverra nibh cras pulvinar Habitant morbi tristique senectus et netus et Adipiscing bibendum est ultricies integer Amet risus nullam eget felis Ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis Ullamcorper morbi tincidunt ornare massa eget egestasPulvinar etiam non quam lacus suspendisse faucibus interdum posuere Eget egestas purus viverra accumsan in nisl nisi Quam viverra orci sagittis eu volutpat odio facilisis Lacus viverra vitae congue eu Tempor orci eu lobortis elementum nibh tellus molestie nunc non Nec feugiat nisl pretium fusce id velit ut Nibh sit amet commodo nulla facilisi nullam vehicula ipsum a Amet consectetur adipiscing elit duis tristique sollicitudin nibh Urna et pharetra pharetra massa Ultrices sagittis orci a scelerisque purusVivamus at augue eget arcu Est sit amet facilisis magna etiam tempor orci Rutrum quisque non tellus orci ac auctor Et ligula ullamcorper malesuada proin libero nunc consequat interdum Proin nibh nisl condimentum id venenatis a condimentum vitae sapien Arcu non odio euismod lacinia at quis risus sed Eget lorem dolor sed viverra Tempus imperdiet nulla malesuada pellentesque elit Mi ipsum faucibus vitae aliquet nec Proin sed libero enim sed faucibus turpis in eu mi Sagittis aliquam malesuada bibendum arcu Tempor orci eu lobortis elementum nibh tellus molestie nunc Pulvinar mattis nunc sed blandit libero
     Velit egestas dui id ornare arcu odio Eget duis at tellus at urna condimentum mattis Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat Eget est lorem ipsum dolor sit amet Proin libero nunc consequat interdum varius sit amet mattis Suspendisse potenti nullam ac tortor vitae purus faucibus ornare Urna molestie at elementum eu facilisis Amet facilisis magna etiam tempor orci eu Id diam vel quam elementum pulvinar etiam non Nisi quis eleifend quam adipiscing vitae proin Enim ut sem viverra aliquet eget Platea dictumst vestibulum rhoncus est Bibendum at varius vel pharetra vel turpis nunc Donec pretium vulputate sapien nec Massa massa ultricies mi quisAccumsan sit amet nulla facilisi morbi tempus iaculis At varius vel pharetra vel turpis nunc eget Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu feugiat Duis at tellus at urna condimentum mattis pellentesque id nibh A pellentesque sit amet porttitor eget dolor morbi non Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed Massa sed elementum tempus egestas sed sed Sed viverra tellus in hac Bibendum enim facilisis gravida neque convallis a cras semper Amet justo donec enim diam vulputate ut pharetra sit amet Quis commodo odio aenean sed adipiscing diam Neque viverra justo nec ultrices dui sapien eget mi Aliquet nec ullamcorper sit amet risus nullam eget felis eget`;
 
-    return Lorem.replace(/\n/g,'')
-    .toLowerCase()
-    .split(" ")
-    .sort(Utils.RandomSort)[Utils.RandomInt(1500)];
+    return Lorem.replace(/\n/g, "")
+      .toLowerCase()
+      .split(" ")
+      .sort(Utils.RandomSort)[Utils.RandomInt(1500)];
   }
 
   static RandomSongName() {
-    return Lorem.RandomLyrics()
-      .filter((f) => f.length > 3)
-      .slice(9, 11)
-      .map((n) => n[0].toUpperCase() + n.substring(1))
-      .join(" ");
+    return London.RandomSongName();
   }
 
   static RandomLyrics() {
@@ -36,47 +34,46 @@ class Lorem {
       Lorem.GenerateRandomWord(),
       Lorem.GenerateRandomWord(),
       Lorem.GenerateRandomWord(),
-      Lorem.GenerateRandomWord().substring(0,3),
+      Geany.GenerateRandomWord(3),
     ];
-    const rise = [alpha, sign];
+    const rise = [alpha, beta];
     const verse = [delta, gamma];
     const verse2 = Utils.randomize(verse);
-    const preChorus = [sign, gamma];
-    const chorus = [alpha, sign];
-    const fall = [alpha, beta, sign];
+    const preChorus = [gamma, gamma];
+    const chorus = [alpha, gamma];
+    const fall = [alpha, beta, gamma];
     const fall2 = Utils.randomize(fall);
 
     // song
     return [
       preChorus,
       rise,
+      sign,
       verse,
       fall,
-      pause,
+      sign,
       preChorus,
-      pause,
       preChorus,
-      pause,
+      sign,
       chorus,
       chorus,
       chorus,
       chorus,
-      pause,
+      sign,
       verse,
       fall,
-      pause,
+      sign,
       fall,
       fall2,
+      sign,
+      verse,
       verse2,
-      pause,
-      verse2,
-      pause,
+      sign,
       pause,
       pause,
-      pause
+      pause,
     ].flat(1);
   }
-
 }
 
 export default Lorem;

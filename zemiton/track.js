@@ -2,20 +2,28 @@ import MidiWriter from "midi-writer-js";
 import Utils from "./utils.js";
 
 class Track {
-  static DurationMap = [2,4,8];
+  static DurationMap = [2, 4, 8];
 
   static GetDurationFill = (gap) => {
-    switch(gap){
-      case 0.5: return [8];
-      case 1: return [8,8];
-      case 1.5: return [4,8];
-      case 2: return [4,8,8];
-      case 2.5: return [4,4,8];
-      case 3: return [4,2];
-      case 3.5: return [4,2,8];
-      default: return [];
+    switch (gap) {
+      case 0.5:
+        return [8];
+      case 1:
+        return [8, 8];
+      case 1.5:
+        return [4, 8];
+      case 2:
+        return [4, 8, 8];
+      case 2.5:
+        return [4, 4, 8];
+      case 3:
+        return [4, 2];
+      case 3.5:
+        return [4, 2, 8];
+      default:
+        return [];
     }
-  }
+  };
 
   /**
    *
@@ -75,6 +83,8 @@ class Track {
       return duration.reduce((a, d) => a + Track.DurationCount(d), 0);
     }
     switch (duration) {
+      case "8t":
+        return 1 / 3;
       case "d2":
         return 3;
       case "d4":

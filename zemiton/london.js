@@ -1,3 +1,4 @@
+import Geany from "./geany.js";
 import Utils from "./utils.js";
 
 class London {
@@ -231,40 +232,39 @@ class London {
       London.GenerateRandomWord(),
       London.GenerateRandomWord(),
       London.GenerateRandomWord(),
-      London.GenerateRandomWord().substring(0,3),
+      Geany.GenerateRandomWord(3),
     ];
-    const rise = [alpha, beta];
-    const verse = [beta, gamma];
+    const rise = [alpha, alpha];
+    const verse = [beta, beta];
     const verse2 = Utils.randomize(verse);
-    const preChorus = [delta, gamma];
-    const chorus = [delta, sign];
-    const fall = [alpha, beta, alpha];
+    const preChorus = [gamma, delta];
+    const chorus = [delta, gamma];
+    const fall = [alpha, beta, gamma];
     const fall2 = Utils.randomize(fall);
 
     // song
     return [
-      pause,
+      sign,
       rise,
       verse,
-      verse2,
-      pause,
+      sign,
+      preChorus,      
       preChorus,
-      pause,
-      preChorus,
-      pause,
+      sign,
       chorus,
       chorus,
       chorus,
       chorus,
-      pause,
+      sign,
       verse,
       verse2,
-      pause,
+      sign,
       fall,
       fall2,
-      pause,
-      rise,
-      pause,
+      sign,
+      verse,
+      verse2,
+      sign,
       pause,
       pause,
       pause

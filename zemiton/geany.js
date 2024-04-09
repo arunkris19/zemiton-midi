@@ -1,8 +1,9 @@
+import London from "./london.js";
 import Lorem from "./lorem.js";
 import Utils from "./utils.js";
 
 class Geany {
-  static GenerateRandomWord(length=Utils.RandomInt(15,3)) {
+  static GenerateRandomWord(length=Utils.RandomInt(9,4)) {
     const vowels = "aeiou";
     const consonants = "bcdfghjklmnpqrstvwxyz";
     let word = "";
@@ -24,7 +25,7 @@ class Geany {
   }
 
   static RandomSongName() {
-    return Lorem.RandomSongName();
+    return London.RandomSongName();
   }
 
   static RandomLyrics() {
@@ -35,41 +36,39 @@ class Geany {
       Geany.GenerateRandomWord(),
       Geany.GenerateRandomWord(),
       Geany.GenerateRandomWord(),
-      Geany.GenerateRandomWord().substring(0,3),
+      Geany.GenerateRandomWord(3),
     ];
-    const rise = [alpha, sign];
-    const verse = [delta, gamma];
+
+    const rise = [alpha, alpha];
+    const verse = [beta, beta];
     const verse2 = Utils.randomize(verse);
-    const preChorus = [sign, gamma];
-    const chorus = [alpha, sign];
-    const fall = [alpha, beta, sign];
+    const preChorus = [gamma, alpha];
+    const chorus = [delta, gamma];
+    const fall = [alpha, beta, gamma];
     const fall2 = Utils.randomize(fall);
 
     // song
     return [
-      preChorus,
-      verse,
       rise,
-      fall,
-      pause,
+      verse,
+      sign,
       preChorus,
-      pause,
       preChorus,
-      pause,
+      sign,
       fall,
-      pause,
       fall,
+      sign,
       fall2,
       verse2,
-      pause,
+      sign,
       chorus,
       chorus,
       chorus,
       chorus,
-      pause,
+      sign,
       verse,
       verse2,
-      pause,
+      sign,
       pause,
       pause,
       pause

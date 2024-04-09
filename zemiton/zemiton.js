@@ -4,6 +4,8 @@ import Scale from "./scale.js";
 import Utils from "./utils.js";
 import Track from "./track.js";
 import London from "./london.js";
+import Geany from "./geany.js";
+import Lorem from "./lorem.js";
 
 class ZemitonMidi {
   writer = null;
@@ -88,23 +90,22 @@ class ZemitonMidi {
     return motif.filter((m) => m.duration);
   }
 
-  CreateBassMotif(seed, scale) {
-    const durations = this.DurationsBySize(seed.length).sort(Utils.RandomSort);
-    const motif = seed.split("").map((c, i) => {
-      return {
-        duration: durations[i],
-        pitch: "aeiou".includes(c)
-          ? scale[0]
-          : scale[c.charCodeAt(0) % scale.length],
-      };
-    });
+  CreateBassMotif(scale) {
+    const durationMap = [[4,4,4,4]];
 
+    const durations = durationMap[Utils.RandomInt(durationMap.length)];
+    const motif = durations.map((duration, i) => {
+      return {
+        duration,
+        pitch: scale[(i + Utils.RandomInt(2)) % 4]
+      }
+    })
     return motif;
   }
 
   Compose(
-    Method = London,
-    tempo = Utils.RandomInt(140, 80),
+    Method = [London, Geany, Lorem][Utils.RandomInt(3)],
+    tempo = Utils.RandomInt(110, 80),
     inputScale = null,
     inputSongName = null
   ) {
@@ -112,8 +113,8 @@ class ZemitonMidi {
      * Midi configuration
      * scale, signature, tempo, etc.
      */
-    const scaleNote = Scale.noteMap[Utils.RandomInt(Scale.noteMap.length)];
-    const [scale, scaleName] = inputScale ?? Scale.Random(scaleNote);
+    const scaleNote = Scale.noteMap[Utils.RandomInt(Scale.noteMap.length, 5)];
+    const [scale, scaleName, scaleType] = inputScale ?? Scale.Random(scaleNote);
     const lyrics = Method.RandomLyrics();
 
     this.scaleName = scaleName;
@@ -133,7 +134,6 @@ class ZemitonMidi {
     this.log.push("");
 
     const track = Track.CreateTrack("Lead", tempo);
-
     /**
      * Preparing lead motifs
      */
@@ -146,9 +146,11 @@ class ZemitonMidi {
       Track.RenderToTrack(track, motif, 70);
     });
 
+
     /**
      * Preparing bass motif
      */
+    const bass = Track.CreateTrack("Bass", tempo);
     const totalEvents = leadNotes.reduce(
       (a, b) =>
         a +
@@ -158,17 +160,11 @@ class ZemitonMidi {
       0
     );
 
-    const bass = Track.CreateTrack("Bass", tempo);
-    const bassWord = lyrics
-      .find((l) => l.length >= 4)
-      .split("")
-      .sort(Utils.RandomSort)
-      .join("");
-
-    const bassMotif = this.CreateBassMotif(bassWord, scale).map((note) => {
+    
+    const bassMotif = this.CreateMotif(Geany.GenerateRandomWord(8), scale).map((note) => {
       return {
         ...note,
-        pitch: Scale.DownOctave(note.pitch),
+        pitch: scaleType === Scale.UPPER ? Scale.DownOctave(note.pitch) : note.pitch,
       };
     });
 
@@ -185,7 +181,7 @@ class ZemitonMidi {
     );
     bassNotes.push([
       {
-        pitch: Scale.ChordOf(scale, 4),
+        pitch: Scale.ChordOf(scale, 0),
         duration: 1,
       },
     ]);
