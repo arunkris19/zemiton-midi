@@ -12,9 +12,7 @@ class Geany {
     for (let i = 0; i < length; i++) {
       if (i % 2 === 0) {
         // If even index, add a consonant
-        word += consonants.charAt(
-          Math.floor(Math.random() * consonants.length)
-        );
+        word += consonants.charAt(Utils.RandomInt(consonants.length));
       } else {
         // If odd index, add a vowel
         word += vowels.charAt(Math.floor(Math.random() * vowels.length));
@@ -32,46 +30,59 @@ class Geany {
     // parts
     const pause = [Utils.PAUSE];
     const [alpha, beta, gamma, delta, sign] = [
-      Geany.GenerateRandomWord(),
-      Geany.GenerateRandomWord(),
-      Geany.GenerateRandomWord(),
-      Geany.GenerateRandomWord(),
-      Geany.GenerateRandomWord(3),
+      Geany.GenerateRandomWord(5),
+      Geany.GenerateRandomWord(6),
+      Geany.GenerateRandomWord(7),
+      Geany.GenerateRandomWord(13),
+      Geany.GenerateRandomWord(Utils.RandomInt(4,2)),
     ];
-
-    const rise = [alpha, alpha];
-    const verse = [beta, beta];
-    const verse2 = Utils.randomize(verse);
-    const preChorus = [gamma, alpha];
-    const chorus = [delta, gamma];
-    const fall = [alpha, beta, gamma];
-    const fall2 = Utils.randomize(fall);
 
     // song
     return [
-      rise,
-      verse,
+      pause,
+      alpha,
+      alpha,
+      alpha,
       sign,
-      preChorus,
-      preChorus,
+      beta,
+      beta,
+      beta,
       sign,
-      fall,
-      fall,
+      gamma,
+      gamma,
+      gamma,
       sign,
-      fall2,
-      verse2,
+      delta,
+      delta,
+      delta,
       sign,
-      chorus,
-      chorus,
-      chorus,
-      chorus,
+      beta,
+      beta,
+      beta,
+      pause,
+      alpha,
+      alpha,
+      alpha,
       sign,
-      verse,
-      verse2,
+      beta,
+      beta,
+      beta,
+      sign,
+      gamma,
+      gamma,
+      gamma,
+      sign,
+      delta,
+      delta,
+      delta,
+      sign,
+      beta,
+      beta,
+      beta,
       sign,
       pause,
       pause,
-      pause
+      pause,
     ].flat(1);
   }
 }

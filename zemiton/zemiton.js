@@ -11,6 +11,7 @@ class ZemitonMidi {
   writer = null;
   songName = null;
   scaleName = null;
+  durations = {};
   log = [];
 
   LargeDurations(size) {
@@ -25,27 +26,39 @@ class ZemitonMidi {
   }
 
   DurationsBySize(size) {
-    switch (size) {
-      case 1:
-        return [8];
-      case 2:
-        return [4, "d2"];
-      case 3:
-        return [8, 8, "d2"];
-      case 4:
-        return [
-          [4, 8, 8, 2],
-          [4, 4, 8, "d4"],
-        ][Utils.RandomInt(2)];
-      case 5:
-        return [4, 8, 4, 8, 4];
-      case 6:
-        return [4, 8, 8, 4, 8, 8];
-      case 7:
-        return [8, 8, 4, 8, 8, 8, 8];
-      default:
-        return this.LargeDurations(size);
+    if (!this.durations[size]) {
+      switch (size) {
+        case 1:
+          return [1];
+        case 2:
+          return [4, "d2"];
+        case 3:
+          return [8, 8, "d2"];
+        case 4:
+          this.durations[size] = [
+            [4, 8, 8, 2],
+            [4, 4, 8, "d4"],
+            ["d4", 4, 4, 8],
+            [8, 8, 2, 4],
+            ["d4", "d4", 8, 8],
+          ][Utils.RandomInt(5)].sort(Utils.RandomSort);
+          break;
+        case 5:
+          this.durations[size] = [4, 8, 4, 8, 4].sort(Utils.RandomSort);
+          break;
+        case 6:
+          this.durations[size] = [4, 8, 8, 4, 8, 8].sort(Utils.RandomSort);
+          break;
+        case 7:
+          this.durations[size] = [8, 8, 4, 8, 8, 8, 8].sort(Utils.RandomSort);
+          break;
+        default:
+          this.durations[size] = this.LargeDurations(size).sort(Utils.RandomSort);
+          break;
+      }
     }
+    
+    return this.durations[size];
   }
 
   CreateMotif(seed, scale) {
@@ -90,19 +103,6 @@ class ZemitonMidi {
     return motif.filter((m) => m.duration);
   }
 
-  CreateBassMotif(scale) {
-    const durationMap = [[4,4,4,4]];
-
-    const durations = durationMap[Utils.RandomInt(durationMap.length)];
-    const motif = durations.map((duration, i) => {
-      return {
-        duration,
-        pitch: scale[(i + Utils.RandomInt(2)) % 4]
-      }
-    })
-    return motif;
-  }
-
   Compose(
     Method = [London, Geany, Lorem][Utils.RandomInt(3)],
     tempo = Utils.RandomInt(110, 80),
@@ -114,7 +114,7 @@ class ZemitonMidi {
      * scale, signature, tempo, etc.
      */
     const scaleNote = Scale.noteMap[Utils.RandomInt(Scale.noteMap.length, 5)];
-    const [scale, scaleName, scaleType] = inputScale ?? Scale.Random(scaleNote);
+    const [scale, scaleName] = inputScale ?? Scale.Random(scaleNote);
     const lyrics = Method.RandomLyrics();
 
     this.scaleName = scaleName;
@@ -134,18 +134,18 @@ class ZemitonMidi {
     this.log.push("");
 
     const track = Track.CreateTrack("Lead", tempo);
+    const leadScale = Scale.setOctave(scale, 5);
     /**
      * Preparing lead motifs
      */
     const leadNotes = lyrics.map((phrase) => {
-      const motif = this.CreateMotif(phrase, scale);
+      const motif = this.CreateMotif(phrase, leadScale);
       return motif;
     });
 
     leadNotes.forEach((motif) => {
       Track.RenderToTrack(track, motif, 70);
     });
-
 
     /**
      * Preparing bass motif
@@ -160,8 +160,10 @@ class ZemitonMidi {
       0
     );
 
-    
-    const bassMotif = this.CreateMotif(Geany.GenerateRandomWord(8), scale);
+    const bassScale = Scale.setOctave(scale, 4);
+    const bassWord = Geany.GenerateRandomWord(4);
+    const bassMotif = this.CreateMotif(bassWord, bassScale);
+    log(bassWord);
 
     const bassEvents = bassMotif.reduce(
       (a, b) => a + Track.DurationCount(b.duration),
@@ -176,12 +178,12 @@ class ZemitonMidi {
     );
     bassNotes.push([
       {
-        pitch: Scale.ChordOf(scale, 0),
+        pitch: Scale.ChordOf(bassScale, 0),
         duration: 1,
       },
     ]);
     bassNotes.forEach((motif) => {
-      motif[0].pitch = Scale.ChordOf(scale, Utils.RandomInt(5));
+      motif[0].pitch = Scale.ChordOf(bassScale, Utils.RandomInt(5));
       motif[0].velocity = 55;
       Track.RenderToTrack(bass, motif, 60);
     });

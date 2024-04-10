@@ -55,9 +55,10 @@ class Track {
    * @param {*} velocity
    * @returns
    */
-  static GetNoteEvent(note, velocity = 60) {
+  static GetNoteEvent(note, velocity = 60, wait=[]) {
     return new MidiWriter.NoteEvent({
       ...note,
+      wait,
       velocity,
     });
   }
@@ -66,12 +67,13 @@ class Track {
     return new MidiWriter.Writer(tracks);
   }
 
-  static RenderToTrack(track, motif, velocity = 80) {
+  static RenderToTrack(track, motif, velocity = 80, wait=[]) {
     motif.forEach((event) => {
       track.addEvent(
         Track.GetNoteEvent(
           event,
-          event.velocity ?? Utils.RandomInt(velocity + 5, velocity - 5)
+          event.velocity ?? Utils.RandomInt(velocity + 5, velocity - 5),
+          wait
         )
       );
     });

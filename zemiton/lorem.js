@@ -4,7 +4,7 @@ import Track from "./track.js";
 import Utils from "./utils.js";
 
 class Lorem {
-  static GenerateRandomWord() {
+  static GenerateRandomWord(length=16) {
     const Lorem = `Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Fringilla phasellus faucibus scelerisque eleifend In nulla posuere sollicitudin aliquam ultrices sagittis orci a Libero justo laoreet sit amet cursus sit amet Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida Imperdiet nulla malesuada pellentesque elit eget Pellentesque habitant morbi tristique senectus et netus Semper risus in hendrerit gravida Nibh venenatis cras sed felis eget velit Lobortis feugiat vivamus at augue eget arcu dictum Suscipit adipiscing bibendum est ultricies integer quis auctor elitOrnare quam viverra orci sagittis Justo laoreet sit amet cursus sit In fermentum et sollicitudin ac orci phasellus Integer vitae justo eget magna Aliquet nec ullamcorper sit amet Id eu nisl nunc mi Leo a diam sollicitudin tempor id eu nisl nunc mi At tellus at urna condimentum mattis pellentesque id Nunc lobortis mattis aliquam faucibus purus Purus semper eget duis at tellus At tellus at urna condimentum mattis Enim tortor at auctor urna nunc id cursus metus aliquam Sit amet aliquam id diam maecenas Dolor sed viverra ipsum nunc aliquet bibendum Euismod lacinia at quis risus sed vulputate odio utSapien et ligula ullamcorper malesuada proin Orci nulla pellentesque dignissim enim sit amet venenatis urna cursus Molestie nunc non blandit massa enim nec dui nunc Dolor sit amet consectetur adipiscing elit Amet mattis vulputate enim nulla aliquet porttitor lacus luctus Molestie a iaculis at erat pellentesque adipiscing commodo Odio euismod lacinia at quis risus sed Quis viverra nibh cras pulvinar mattis nunc Amet tellus cras adipiscing enim eu turpis Etiam sit amet nisl purus in mollis nunc Pulvinar neque laoreet suspendisse interdum consectetur Neque volutpat ac tincidunt vitae Laoreet suspendisse interdum consectetur libero id faucibus
     Pharetra et ultrices neque ornare aenean Sit amet mattis vulputate enim nulla aliquet porttitor lacus luctus Nibh venenatis cras sed felis eget velit aliquet sagittis Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi Sapien faucibus et molestie ac feugiat sed Libero nunc consequat interdum varius Duis at consectetur lorem donec massa sapien faucibus et molestie Aliquet nec ullamcorper sit amet risus nullam Sollicitudin tempor id eu nisl nunc mi ipsum faucibus Maecenas pharetra convallis posuere morbi leo urna Dictum sit amet justo donec enim diam vulputate Enim sit amet venenatis urna Morbi tristique senectus et netus et malesuada fames ac turpis Venenatis tellus in metus vulputate Interdum velit euismod in pellentesque massa Faucibus scelerisque eleifend donec pretium vulputate sapien Non curabitur gravida arcu ac tortor dignissim convallis aenean In mollis nunc sed id semper risus in hendrerit gravida Gravida arcu ac tortor dignissimElit at imperdiet dui accumsan Ac orci phasellus egestas tellus rutrum tellus pellentesque eu Viverra tellus in hac habitasse Pellentesque habitant morbi tristique senectus et netus et Ut lectus arcu bibendum at varius vel pharetra Tortor pretium viverra suspendisse potenti nullam ac tortor vitae purus Nulla porttitor massa id neque Neque aliquam vestibulum morbi blandit cursus Posuere ac ut consequat semper Purus semper eget duis at tellus at Mattis pellentesque id nibh tortor id aliquet lectus
     Blandit libero volutpat sed cras ornare arcu Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat Tincidunt vitae semper quis lectus nulla at volutpat diam Fermentum dui faucibus in ornare quam viverra A condimentum vitae sapien pellentesque habitant morbi Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis Ridiculus mus mauris vitae ultricies leo integer malesuada Mattis rhoncus urna neque viverra justo Enim diam vulputate ut pharetra sit amet aliquam id diam Amet nisl purus in mollis nunc sed id Et netus et malesuada fames ac turpis egestasPretium fusce id velit ut tortor pretium viverra Enim ut sem viverra aliquet eget Interdum velit laoreet id donec Sagittis id consectetur purus ut Quis ipsum suspendisse ultrices gravida Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam Sapien et ligula ullamcorper malesuada In fermentum posuere urna nec tincidunt praesent semper Vitae justo eget magna fermentum Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus Eu tincidunt tortor aliquam nullaEt ligula ullamcorper malesuada proin libero nunc consequat interdum varius In pellentesque massa placerat duis ultricies Arcu dui vivamus arcu felis bibendum ut tristique et egestas Est lorem ipsum dolor sit amet consectetur adipiscing elit Integer malesuada nunc vel risus Est lorem ipsum dolor sit amet consectetur Dignissim enim sit amet venenatis urna cursus eget Nec feugiat nisl pretium fusce id velit ut tortor Suspendisse potenti nullam ac tortor vitae Viverra tellus in hac habitasse Habitasse platea dictumst quisque sagittis
@@ -19,7 +19,8 @@ class Lorem {
     return Lorem.replace(/\n/g, "")
       .toLowerCase()
       .split(" ")
-      .sort(Utils.RandomSort)[Utils.RandomInt(1500)];
+      .sort(Utils.RandomSort)
+      .find((w) => w.length === length);
   }
 
   static RandomSongName() {
@@ -30,44 +31,55 @@ class Lorem {
     // parts
     const pause = [Utils.PAUSE];
     const [alpha, beta, gamma, delta, sign] = [
-      Lorem.GenerateRandomWord(),
-      Lorem.GenerateRandomWord(),
-      Lorem.GenerateRandomWord(),
-      Lorem.GenerateRandomWord(),
-      Geany.GenerateRandomWord(3),
+      Lorem.GenerateRandomWord(6),
+      Lorem.GenerateRandomWord(7),
+      Lorem.GenerateRandomWord(5),
+      Lorem.GenerateRandomWord(12),
+      Lorem.GenerateRandomWord(Utils.RandomInt(4,2)),
     ];
-    const rise = [alpha, beta];
-    const verse = [delta, gamma];
-    const verse2 = Utils.randomize(verse);
-    const preChorus = [gamma, gamma];
-    const chorus = [alpha, gamma];
-    const fall = [alpha, beta, gamma];
-    const fall2 = Utils.randomize(fall);
 
     // song
     return [
-      preChorus,
-      rise,
+      pause,
+      alpha,
+      alpha,
+      alpha,
       sign,
-      verse,
-      fall,
+      beta,
+      beta,
+      beta,
       sign,
-      preChorus,
-      preChorus,
+      gamma,
+      gamma,
+      gamma,
       sign,
-      chorus,
-      chorus,
-      chorus,
-      chorus,
+      delta,
+      delta,
+      delta,
       sign,
-      verse,
-      fall,
+      beta,
+      beta,
+      beta,
+      pause,
+      alpha,
+      alpha,
+      alpha,
       sign,
-      fall,
-      fall2,
+      beta,
+      beta,
+      beta,
       sign,
-      verse,
-      verse2,
+      gamma,
+      gamma,
+      gamma,
+      sign,
+      delta,
+      delta,
+      delta,
+      sign,
+      beta,
+      beta,
+      beta,
       sign,
       pause,
       pause,

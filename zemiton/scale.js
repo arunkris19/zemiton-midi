@@ -78,11 +78,13 @@ class Scale {
       .join("");
   }
 
-  static ChordOf(scale, position) {
-    const bassScale = scale.map((n) => {
-      const octave = Number(n[n.length - 1]);
-      return n.replace(octave, octave - 1);
+  static setOctave(scale, octave){
+    return scale.map((note) => {
+      return note.substring(0, note.length - 1) + octave;
     });
+  }
+
+  static ChordOf(bassScale, position) {
     const chord = [
       bassScale[position],
       bassScale[(position + 2) % bassScale.length],
