@@ -1,6 +1,5 @@
 import Geany from "./geany.js";
 import London from "./london.js";
-import Track from "./track.js";
 import Utils from "./utils.js";
 
 class Lorem {
@@ -38,19 +37,25 @@ class Lorem {
       Lorem.GenerateRandomWord(Utils.RandomInt(4,2)),
     ];
 
+    const [alphaR, betaR, gammaR] = [
+      Geany.GenerateRandomWord(6),
+      Geany.GenerateRandomWord(7),
+      Geany.GenerateRandomWord(5)
+    ];
+
     // song
     return [
       pause,
       alpha,
-      alpha,
+      alphaR,
       alpha,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       gamma,
-      gamma,
+      gammaR,
       gamma,
       sign,
       delta,
@@ -62,15 +67,15 @@ class Lorem {
       beta,
       pause,
       alpha,
+      alphaR,
       alpha,
-      alpha,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       gamma,
-      gamma,
+      gammaR,
       gamma,
       sign,
       delta,
@@ -78,7 +83,7 @@ class Lorem {
       delta,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       pause,

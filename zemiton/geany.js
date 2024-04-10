@@ -37,19 +37,25 @@ class Geany {
       Geany.GenerateRandomWord(Utils.RandomInt(4,2)),
     ];
 
+    const [alphaR, betaR, gammaR] = [
+      Lorem.GenerateRandomWord(5),
+      Lorem.GenerateRandomWord(6),
+      Lorem.GenerateRandomWord(7)
+    ];
+
     // song
     return [
       pause,
       alpha,
-      alpha,
+      alphaR,
       alpha,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       gamma,
-      gamma,
+      gammaR,
       gamma,
       sign,
       delta,
@@ -61,15 +67,15 @@ class Geany {
       beta,
       pause,
       alpha,
+      alphaR,
       alpha,
-      alpha,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       gamma,
-      gamma,
+      gammaR,
       gamma,
       sign,
       delta,
@@ -77,7 +83,7 @@ class Geany {
       delta,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       pause,

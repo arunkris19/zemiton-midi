@@ -241,19 +241,25 @@ class London {
       London.GenerateRandomWordOfLength(Utils.RandomInt(4, 2)),
     ];
 
+    const [alphaR, betaR, gammaR] = [
+      Geany.GenerateRandomWord(5),
+      Geany.GenerateRandomWord(7),
+      Geany.GenerateRandomWord(6)
+    ];
+
     // song
     return [
       pause,
       alpha,
-      alpha,
+      alphaR,
       alpha,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       gamma,
-      gamma,
+      gammaR,
       gamma,
       sign,
       delta,
@@ -265,15 +271,15 @@ class London {
       beta,
       pause,
       alpha,
+      alphaR,
       alpha,
-      alpha,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       gamma,
-      gamma,
+      gammaR,
       gamma,
       sign,
       delta,
@@ -281,7 +287,7 @@ class London {
       delta,
       sign,
       beta,
-      beta,
+      betaR,
       beta,
       sign,
       pause,
