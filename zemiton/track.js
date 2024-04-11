@@ -72,7 +72,7 @@ class Track {
       track.addEvent(
         Track.GetNoteEvent(
           event,
-          event.velocity ?? Utils.RandomInt(velocity + 5, velocity - 5),
+          event.velocity ?? Utils.RandomInt(velocity + 8, velocity - 8),
           wait
         )
       );

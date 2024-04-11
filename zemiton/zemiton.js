@@ -38,10 +38,9 @@ class ZemitonMidi {
           this.durations[size] = [
             [4, 8, 8, 2],
             [4, 4, 8, "d4"],
-            ["d4", 4, 4, 8],
-            [8, 8, 2, 4],
+            [8, 8,4,4,8,8],
             ["d4", "d4", 8, 8],
-          ][Utils.RandomInt(5)].sort(Utils.RandomSort);
+          ][Utils.RandomInt(4)].sort(Utils.RandomSort);
           break;
         case 5:
           this.durations[size] = [4, 8, 4, 8, 4].sort(Utils.RandomSort);
@@ -53,22 +52,25 @@ class ZemitonMidi {
           this.durations[size] = [8, 8, 4, 8, 8, 8, 8].sort(Utils.RandomSort);
           break;
         default:
-          this.durations[size] = this.LargeDurations(size).sort(Utils.RandomSort);
+          this.durations[size] = this.LargeDurations(size).sort(
+            Utils.RandomSort
+          );
           break;
       }
     }
-    
+
     return this.durations[size];
   }
 
   CreateMotif(seed, scale) {
     const durations = this.DurationsBySize(seed.length);
-    const motif = seed.split("").map((c, i) => {
+    const motif = durations.map((duration, i) => {
+      const c = seed[i % seed.length];
       if (c === Utils.PAUSE) {
         return c;
       }
       return {
-        duration: durations[i],
+        duration,
         pitch: "aeiou".includes(c)
           ? scale[0]
           : scale[c.charCodeAt(0) % scale.length],
@@ -95,6 +97,7 @@ class ZemitonMidi {
     if (motif.includes(Utils.PAUSE)) {
       motif.push({
         duration: [1],
+        velocity: 60,
         pitch: scale[Utils.RandomInt(scale.length)],
       });
     }
@@ -134,7 +137,7 @@ class ZemitonMidi {
     this.log.push("");
 
     const track = Track.CreateTrack("Lead", tempo);
-    const leadScale = Scale.setOctave(scale, 5);
+    const leadScale = scale;
     /**
      * Preparing lead motifs
      */
@@ -144,7 +147,7 @@ class ZemitonMidi {
     });
 
     leadNotes.forEach((motif) => {
-      Track.RenderToTrack(track, motif, 70);
+      Track.RenderToTrack(track, motif, 60);
     });
 
     /**
@@ -160,10 +163,9 @@ class ZemitonMidi {
       0
     );
 
-    const bassScale = Scale.setOctave(scale, 4);
+    const bassScale = scale.map((note) => Scale.DownOctave(note));
     const bassWord = Geany.GenerateRandomWord(4);
     const bassMotif = this.CreateMotif(bassWord, bassScale);
-    log(bassWord);
 
     const bassEvents = bassMotif.reduce(
       (a, b) => a + Track.DurationCount(b.duration),
@@ -173,9 +175,16 @@ class ZemitonMidi {
     /**
      * Render Bass track with bass chords
      */
-    const bassNotes = new Array(Math.ceil(totalEvents / bassEvents)).fill(
-      bassMotif
-    );
+    const bassNotes = new Array(Math.ceil(totalEvents / bassEvents))
+      .fill(bassMotif)
+      .map((b, i) =>
+        leadNotes[i]?.[0]?.duration === 1
+          ? {
+              pitch: Scale.ChordOf(bassScale, Utils.RandomInt(5)),
+              duration: 1,
+            }
+          : b
+      );
     bassNotes.push([
       {
         pitch: Scale.ChordOf(bassScale, 0),
@@ -184,9 +193,11 @@ class ZemitonMidi {
     ]);
     bassNotes.forEach((motif) => {
       motif[0].pitch = Scale.ChordOf(bassScale, Utils.RandomInt(5));
-      motif[0].velocity = 55;
-      Track.RenderToTrack(bass, motif, 60);
+      motif[0].velocity = 60 * 0.8;
+      Track.RenderToTrack(bass, motif, 60 * 0.8);
     });
+
+    
 
     this.writer = Track.WriteTracks([track, bass]);
 

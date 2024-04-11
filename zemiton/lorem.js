@@ -46,6 +46,9 @@ class Lorem {
     // song
     return [
       pause,
+      pause,
+      pause,
+      sign,
       alpha,
       alphaR,
       alpha,

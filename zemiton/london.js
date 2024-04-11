@@ -250,6 +250,9 @@ class London {
     // song
     return [
       pause,
+      pause,
+      pause,
+      sign,
       alpha,
       alphaR,
       alpha,
