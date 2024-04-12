@@ -30,17 +30,17 @@ class Geany {
     // parts
     const pause = [Utils.PAUSE];
     const [alpha, beta, gamma, delta, sign] = [
-      Geany.GenerateRandomWord(5),
       Geany.GenerateRandomWord(6),
       Geany.GenerateRandomWord(7),
-      Geany.GenerateRandomWord(13),
+      Geany.GenerateRandomWord(5),
+      Utils.SplitStringIntoArray(Geany.GenerateRandomWord(14)),
       Geany.GenerateRandomWord(Utils.RandomInt(4,2)),
     ];
 
     const [alphaR, betaR, gammaR] = [
-      Lorem.GenerateRandomWord(5),
-      Lorem.GenerateRandomWord(6),
-      Lorem.GenerateRandomWord(7)
+      Geany.GenerateRandomWord(6),
+      Geany.GenerateRandomWord(7),
+      Geany.GenerateRandomWord(5)
     ];
 
     // song
@@ -68,7 +68,7 @@ class Geany {
       beta,
       beta,
       beta,
-      pause,
+      sign,
       alpha,
       alphaR,
       alpha,
@@ -92,7 +92,7 @@ class Geany {
       pause,
       pause,
       pause,
-    ].flat(1);
+    ].flat(2);
   }
 }
 

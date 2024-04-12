@@ -33,7 +33,7 @@ class Lorem {
       Lorem.GenerateRandomWord(6),
       Lorem.GenerateRandomWord(7),
       Lorem.GenerateRandomWord(5),
-      Lorem.GenerateRandomWord(12),
+      Utils.SplitStringIntoArray(Lorem.GenerateRandomWord(10)),
       Lorem.GenerateRandomWord(Utils.RandomInt(4,2)),
     ];
 
@@ -68,7 +68,7 @@ class Lorem {
       beta,
       beta,
       beta,
-      pause,
+      sign,
       alpha,
       alphaR,
       alpha,
@@ -92,7 +92,7 @@ class Lorem {
       pause,
       pause,
       pause,
-    ].flat(1);
+    ].flat(2);
   }
 }
 

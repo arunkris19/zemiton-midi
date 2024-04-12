@@ -74,7 +74,7 @@ class Scale {
   static UpOctave(note) {
     return note
       .split("")
-      .map((n) => (Number.isNaN(Number(n)) ? n : Number(n) - 1))
+      .map((n) => (Number.isNaN(Number(n)) ? n : Number(n) + 1))
       .join("");
   }
 

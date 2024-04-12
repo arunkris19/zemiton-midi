@@ -234,17 +234,17 @@ class London {
     // parts
     const pause = [Utils.PAUSE];
     const [alpha, beta, gamma, delta, sign] = [
-      London.GenerateRandomWordOfLength(5),
-      London.GenerateRandomWordOfLength(7),
-      London.GenerateRandomWordOfLength(6),
-      London.GenerateRandomWordOfLength(11),
-      London.GenerateRandomWordOfLength(Utils.RandomInt(4, 2)),
+      London.GenerateRandomWord(6),
+      London.GenerateRandomWord(7),
+      London.GenerateRandomWord(5),
+      Utils.SplitStringIntoArray(London.GenerateRandomWord(12)),
+      London.GenerateRandomWord(Utils.RandomInt(4,2)),
     ];
 
     const [alphaR, betaR, gammaR] = [
-      Geany.GenerateRandomWord(5),
+      Geany.GenerateRandomWord(6),
       Geany.GenerateRandomWord(7),
-      Geany.GenerateRandomWord(6)
+      Geany.GenerateRandomWord(5)
     ];
 
     // song
@@ -272,7 +272,7 @@ class London {
       beta,
       beta,
       beta,
-      pause,
+      sign,
       alpha,
       alphaR,
       alpha,
@@ -296,7 +296,7 @@ class London {
       pause,
       pause,
       pause,
-    ].flat(1);
+    ].flat(2);
   }
 }
 

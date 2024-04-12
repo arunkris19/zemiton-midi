@@ -30,6 +30,16 @@ class Utils {
     nl[i] = nl[i].split('').reverse().join('');
     return nl;
   };
+
+  static SplitStringIntoArray(string) {
+    const halfLength = Math.ceil(string.length / 2);
+    const array = [];
+    for (let i = 0; i < string.length; i += halfLength) {
+        array.push(string.substr(i, halfLength));
+    }
+    return array;
+}
+
   
 }
 
