@@ -34,7 +34,7 @@ class Geany {
       Geany.GenerateRandomWord(7),
       Geany.GenerateRandomWord(5),
       Utils.SplitStringIntoArray(Geany.GenerateRandomWord(14)),
-      Geany.GenerateRandomWord(Utils.RandomInt(4,2)),
+      Geany.GenerateRandomWord(4),
     ];
 
     const [alphaR, betaR, gammaR] = [

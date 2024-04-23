@@ -234,11 +234,11 @@ class London {
     // parts
     const pause = [Utils.PAUSE];
     const [alpha, beta, gamma, delta, sign] = [
-      London.GenerateRandomWord(6),
-      London.GenerateRandomWord(7),
-      London.GenerateRandomWord(5),
-      Utils.SplitStringIntoArray(London.GenerateRandomWord(12)),
-      London.GenerateRandomWord(Utils.RandomInt(4,2)),
+      London.GenerateRandomWordOfLength(6),
+      London.GenerateRandomWordOfLength(7),
+      London.GenerateRandomWordOfLength(5),
+      Utils.SplitStringIntoArray(London.GenerateRandomWordOfLength(12)),
+      London.GenerateRandomWordOfLength(1),
     ];
 
     const [alphaR, betaR, gammaR] = [

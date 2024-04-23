@@ -34,7 +34,7 @@ class Lorem {
       Lorem.GenerateRandomWord(7),
       Lorem.GenerateRandomWord(5),
       Utils.SplitStringIntoArray(Lorem.GenerateRandomWord(10)),
-      Lorem.GenerateRandomWord(Utils.RandomInt(4,2)),
+      Lorem.GenerateRandomWord(2),
     ];
 
     const [alphaR, betaR, gammaR] = [
