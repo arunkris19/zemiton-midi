@@ -6,6 +6,7 @@ import Track from "./track.js";
 import London from "./london.js";
 import Geany from "./geany.js";
 import Lorem from "./lorem.js";
+import Tempo from "./tempo.js";
 
 class ZemitonMidi {
   writer = null;
@@ -49,6 +50,13 @@ class ZemitonMidi {
           break;
         case 7:
           this.durations[size] = [8, 8, 4, 8, 8, 8, 8].sort(Utils.RandomSort);
+          break;
+        case 12:
+          this.durations[size] = new Array(size).fill("8t");
+          break;
+        case 8:
+        case 16:
+          this.durations[size] = new Array(size).fill(size);
           break;
         default:
           this.durations[size] = this.LargeDurations(size).sort(
@@ -94,9 +102,19 @@ class ZemitonMidi {
     return motif.filter((m) => m.duration);
   }
 
+  CreateBassMotif(scale, chord) {
+    const durations = [1];
+    return durations.map((duration, i) => {
+      return {
+        duration,
+        pitch: Scale.ChordOf(scale, chord),
+      };
+    });
+  }
+
   Compose(
     Method = [London, Geany, Lorem][Utils.RandomInt(3)],
-    tempo = Utils.RandomInt(110, 80),
+    tempo = Tempo.MEDIUM,
     inputScale = null,
     inputSongName = null
   ) {
@@ -126,7 +144,7 @@ class ZemitonMidi {
     this.log.push("");
 
     const track = Track.CreateTrack("Lead", tempo);
-    const leadScale = scaleType === Scale.UPPER ? Scale.setOctave(scale, 4) : scale;
+    const leadScale = scale;
     /**
      * Preparing lead motifs
      */
@@ -144,25 +162,16 @@ class ZemitonMidi {
      */
     const bass = Track.CreateTrack("Bass", tempo);
 
-    const bassScale = scale.map((note) => Scale.DownOctave(note));
-    const bassWord = Geany.GenerateRandomWord(4);
-    const bassMotif = this.CreateMotif(bassWord, bassScale);
+    const bassScale =
+      scaleType === Scale.UPPER
+        ? Scale.setOctave(scale, 3)
+        : scale.map((note) => Scale.DownOctave(note));
 
-    leadNotes.forEach((motif) => {
-      if (motif.length === 2 || motif.length === 3) {
-        Track.RenderToTrack(
-          bass,
-          [
-            {
-              pitch: Scale.UpOctave(bassScale[0]),
-              duration: 1,
-            },
-          ],
-          leadVolume * 0.8
-        );
-      } else {
-        Track.RenderToTrack(bass, bassMotif, leadVolume * 0.8);
-      }
+    const progression = [0, 5, 3, 4].sort(Utils.RandomSort);
+    leadNotes.forEach((_, i) => {
+      const chord = progression[i % progression.length];
+      const bassMotif = this.CreateBassMotif(bassScale, chord);
+      Track.RenderToTrack(bass, bassMotif, leadVolume * 0.6);
     });
     //the end
     Track.RenderToTrack(

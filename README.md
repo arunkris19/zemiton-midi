@@ -43,9 +43,9 @@ Supports 3 methods
 */
 const Zc = new ZemitonMidi.MidiComposer().Compose(
   ZemitonMidi.Method.London,
-  110,
+  ZemitonMidi.Tempo.SLOW,
   ZemitonMidi.Scale.Minor("F"),
-  "Zemiton Sonata"
+  "Zemiton Music"
 );
 
 Zc.WriteFile(fileFolder); //Filename will be auto generated

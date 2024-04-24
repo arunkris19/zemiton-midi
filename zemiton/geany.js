@@ -15,7 +15,7 @@ class Geany {
         word += consonants.charAt(Utils.RandomInt(consonants.length));
       } else {
         // If odd index, add a vowel
-        word += vowels.charAt(Math.floor(Math.random() * vowels.length));
+        word += vowels.charAt(Utils.RandomInt(vowels.length));
       }
     }
 
@@ -28,70 +28,118 @@ class Geany {
 
   static RandomLyrics() {
     // parts
-    const pause = [Utils.PAUSE];
-    const [alpha, beta, gamma, delta, sign] = [
-      Geany.GenerateRandomWord(6),
+    const sign = () => Geany.GenerateRandomWord(10)[9];
+    const [alpha, beta, gamma, delta] = [
       Geany.GenerateRandomWord(7),
-      Geany.GenerateRandomWord(5),
-      Utils.SplitStringIntoArray(Geany.GenerateRandomWord(14)),
-      Geany.GenerateRandomWord(4),
+      Geany.GenerateRandomWord(6),
+      Geany.GenerateRandomWord(6),
+      Geany.GenerateRandomWord(4)
+    ].sort(Utils.RandomSort);
+
+    const [alphaR, betaR, gammaR, deltaR] = [
+      Utils.reverseString(alpha),
+      Utils.reverseString(beta),
+      Utils.reverseString(gamma),
+      Utils.reverseString(delta),
     ];
 
-    const [alphaR, betaR, gammaR] = [
-      Geany.GenerateRandomWord(6),
-      Geany.GenerateRandomWord(7),
-      Geany.GenerateRandomWord(5)
-    ];
+    const bridge = Geany.GenerateRandomWord(12);
+    const bridgeR = Utils.reverseString(bridge);
 
     // song
     return [
-      pause,
-      pause,
-      pause,
-      sign,
+      sign(),
+      sign(),
+      sign(),
+      sign(),
+      //
       alpha,
+      alpha,
+      alpha,
+      sign(),
+      //
       alphaR,
-      alpha,
-      sign,
+      alphaR,
+      alphaR,
+      sign(),
+      //
       beta,
+      beta,
+      beta,
+      sign(),
+      //
+      betaR,
       betaR,
       beta,
-      sign,
+      sign(),
+      //
+      betaR,
+      betaR,
+      beta,
+      sign(),
+      //
+      gamma,
+      gamma,
+      gamma,
       gamma,
       gammaR,
-      gamma,
-      sign,
+      gammaR,
+      gammaR,
+      sign(),
+      //
       delta,
       delta,
       delta,
-      sign,
-      beta,
-      beta,
-      beta,
-      sign,
+      delta,
+      deltaR,
+      deltaR,
+      deltaR,
+      delta,
+      //
+      bridge,
+      bridge,
+      bridgeR,
+      bridgeR,
+      sign(),
+      //
       alpha,
+      alpha,
+      alpha,
+      sign(),
+      //
       alphaR,
-      alpha,
-      sign,
+      alphaR,
+      alphaR,
+      sign(),
+      //
       beta,
+      beta,
+      beta,
+      sign(),
+      //
+      betaR,
       betaR,
       beta,
-      sign,
+      sign(),
+      //
+      betaR,
+      betaR,
+      beta,
+      sign(),
+      //
+      gamma,
+      gamma,
+      gamma,
       gamma,
       gammaR,
-      gamma,
-      sign,
-      delta,
-      delta,
-      delta,
-      sign,
-      beta,
-      betaR,
-      beta,
-      sign,
-      pause,
-      pause,
-      pause,
+      gammaR,
+      gammaR,
+      sign(),
+      //
+      sign(),
+      sign(),
+      sign(),
+      sign(),
     ].flat(2);
   }
 }

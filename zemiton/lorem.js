@@ -28,70 +28,109 @@ class Lorem {
 
   static RandomLyrics() {
     // parts
-    const pause = [Utils.PAUSE];
-    const [alpha, beta, gamma, delta, sign] = [
-      Lorem.GenerateRandomWord(6),
+    const sign = () => Geany.GenerateRandomWord(10)[5];
+    const [alpha, beta, gamma, delta] = [
+      Lorem.GenerateRandomWord(7),
       Lorem.GenerateRandomWord(7),
       Lorem.GenerateRandomWord(5),
-      Utils.SplitStringIntoArray(Lorem.GenerateRandomWord(10)),
-      Lorem.GenerateRandomWord(2),
+      Lorem.GenerateRandomWord(5)
+    ].sort(Utils.RandomSort);
+
+    const [alphaR, betaR, gammaR, deltaR] = [
+      Utils.reverseString(alpha),
+      Utils.reverseString(beta),
+      Utils.reverseString(gamma),
+      Utils.reverseString(delta),
     ];
 
-    const [alphaR, betaR, gammaR] = [
-      Geany.GenerateRandomWord(6),
-      Geany.GenerateRandomWord(7),
-      Geany.GenerateRandomWord(5)
-    ];
+    const bridge = Geany.GenerateRandomWord(8);
+    const bridgeR = Utils.reverseString(bridge);
 
     // song
     return [
-      pause,
-      pause,
-      pause,
-      sign,
+      sign(),
+      sign(),
+      sign(),
+      sign(),
+      //
       alpha,
+      alpha,
+      alpha,
+      sign(),
+      //
       alphaR,
-      alpha,
-      sign,
+      alphaR,
+      alphaR,
+      sign(),
+      //
       beta,
+      beta,
+      beta,
+      sign(),
+      //
+      betaR,
       betaR,
       beta,
-      sign,
+      sign(),
+      //
+      betaR,
+      betaR,
+      beta,
+      sign(),
+      //
+      gamma,
+      gamma,
+      gamma,
       gamma,
       gammaR,
-      gamma,
-      sign,
-      delta,
-      delta,
-      delta,
-      sign,
-      beta,
-      beta,
-      beta,
-      sign,
-      alpha,
-      alphaR,
-      alpha,
-      sign,
-      beta,
-      betaR,
-      beta,
-      sign,
-      gamma,
       gammaR,
-      gamma,
-      sign,
+      gammaR,
+      sign(),
+      //
       delta,
       delta,
       delta,
-      sign,
+      delta,
+      deltaR,
+      deltaR,
+      deltaR,
+      delta,
+      //
+      bridge,
+      bridge,
+      bridgeR,
+      bridgeR,
+      sign(),
+      //
+      alpha,
+      alpha,
+      alpha,
+      sign(),
+      //
+      alphaR,
+      alphaR,
+      alphaR,
+      sign(),
+      //
       beta,
+      beta,
+      beta,
+      sign(),
+      //
+      betaR,
       betaR,
       beta,
-      sign,
-      pause,
-      pause,
-      pause,
+      sign(),
+      //
+      betaR,
+      betaR,
+      beta,
+      sign(),
+      //
+      sign(),
+      sign(),
+      sign(),
+      sign(),
     ].flat(2);
   }
 }

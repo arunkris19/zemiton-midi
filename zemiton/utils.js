@@ -1,10 +1,10 @@
 class Utils {
-  static PAUSE = ':';
+  static PAUSE = ":";
 
   /**
-   * 
-   * @param {*} max 
-   * @param {*} min 
+   *
+   * @param {*} max
+   * @param {*} min
    * @returns number
    */
   static RandomInt(max, min = 0) {
@@ -12,22 +12,22 @@ class Utils {
   }
 
   /**
-   * 
+   *
    * @returns number, random sort order
    */
   static RandomSort() {
     return [-1, 0, 1][Utils.RandomInt(3)];
   }
   /**
-   * 
-   * @param {*} phrase 
+   *
+   * @param {*} phrase
    * @returns array
    */
-  
+
   static randomize = (list) => {
     const nl = [...list];
     const i = Utils.RandomInt(nl.length);
-    nl[i] = nl[i].split('').reverse().join('');
+    nl[i] = nl[i].split("").reverse().join("");
     return nl;
   };
 
@@ -35,12 +35,14 @@ class Utils {
     const halfLength = Math.ceil(string.length / 2);
     const array = [];
     for (let i = 0; i < string.length; i += halfLength) {
-        array.push(string.substr(i, halfLength));
+      array.push(string.substr(i, halfLength));
     }
     return array;
-}
+  }
 
-  
+  static reverseString(str){
+    return str.split('').reverse().join('')
+  }
 }
 
 export default Utils;
